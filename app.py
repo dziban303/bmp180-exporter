@@ -5,17 +5,17 @@ import paho.mqtt.client as mqtt
 from prometheus_client import start_http_server, Gauge
 
 # --- CONFIGURATION ---
-MQTT_BROKER = os.getenv('MQTT_BROKER', '192.168.0.175')
+MQTT_BROKER = os.getenv('MQTT_BROKER', '192.168.1.100')
 MQTT_PORT = int(os.getenv('MQTT_PORT', 1883))
-MQTT_TOPIC = os.getenv('MQTT_TOPIC', 'dzicave/pi3_BMP180')
+MQTT_TOPIC = os.getenv('MQTT_TOPIC', 'sensor/pi_BMP180')
 UPDATE_INTERVAL = int(os.getenv('UPDATE_INTERVAL', 15))
 I2C_BUS = 1
 BMP180_ADDRESS = 0x77
 
 # --- PROMETHEUS METRICS ---
-prom_temp_cpu = Gauge('pi3_cpu_temperature_celsius', 'Temperature of the Raspberry Pi CPU')
-prom_temp_sensor = Gauge('pi3_temperature_celsius', 'Ambient temperature from BMP180')
-prom_pressure = Gauge('pi3_pressure_pa', 'Barometric pressure from BMP180')
+prom_temp_cpu = Gauge('pi_cpu_temperature_celsius', 'Temperature of the Raspberry Pi CPU')
+prom_temp_sensor = Gauge('pi_temperature_celsius', 'Ambient temperature from BMP180')
+prom_pressure = Gauge('pi_pressure_pa', 'Barometric pressure from BMP180')
 
 # --- BMP180 DRIVER CLASS ---
 class BMP180:
